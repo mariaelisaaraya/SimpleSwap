@@ -30,7 +30,7 @@ library TransferHelper {
     }
 }
 
-contract SimpleSwapFinal is ERC20 {
+contract SimpleSwap is ERC20 {
     address public immutable tokenA;
     address public immutable tokenB;
     uint256 public constant MINIMUM_LIQUIDITY = 10**3;
@@ -114,7 +114,7 @@ contract SimpleSwapFinal is ERC20 {
             reserveB
         );
 
-        // Nueva función auxiliar para manejar las transferencias y la acuñación de LP
+        //New helper function to handle LP transfers and minting
         liquidity = _transferAndMintLiquidity(
             _tokenA,
             _tokenB,
@@ -359,12 +359,12 @@ contract SimpleSwapFinal is ERC20 {
             liquidity = Math.sqrt(amountA * amountB);
             if (liquidity <= MINIMUM_LIQUIDITY) revert InsufficientLiquidityMinted();
 
-            // Originalmente: _mint(address(0), MINIMUM_LIQUIDITY);
-            // EN SU LUGAR, SIMPLEMENTE NO ACUÑAMOS ESTA CANTIDAD A NADIE.
-            // La MINIMUM_LIQUIDITY se "quema" conceptualmente al no ser acuñada.
-            liquidity -= MINIMUM_LIQUIDITY; // Se descuenta de la liquidez total a acuñar
+            // Originally: _mint(address(0), MINIMUM_LIQUIDITY); 
+            // I simply don't mint this amount to anyone. 
+            // The MINIMUM_LIQUIDITY is conceptually "burned" by not being minted.
+            liquidity -= MINIMUM_LIQUIDITY; // It is discounted from the total liquidity to be minted
         } else {
-            // AÑADIR LIQUIDEZ POSTERIOR
+            // ADD SUBSEQUENT LIQUIDITY
             liquidity = Math.min(
                 (amountA * _totalSupply) / reserveA,
                 (amountB * _totalSupply) / reserveB
@@ -373,7 +373,7 @@ contract SimpleSwapFinal is ERC20 {
 
         if (liquidity == 0) revert InsufficientLiquidityMinted();
 
-        _mint(to, liquidity); // Acuñar la liquidez restante al 'to' address
+        _mint(to, liquidity); // Mint the remaining liquidity to the 'to' address
         return liquidity;
     }
 
