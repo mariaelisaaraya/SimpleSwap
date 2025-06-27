@@ -1,6 +1,6 @@
 # 🛠️ Common Error Encountered & How I Solved It
 
-This document outlines the key issue I faced while developing `SimpleSwap1.sol` and how I solved it. It may help future developers understand a common Solidity pitfall and how to avoid it.
+This document outlines the key issue I faced while developing `SimpleSwap.sol` and how I solved it. It may help future developers understand a common Solidity pitfall and how to avoid it.
 
 ---
 
@@ -28,7 +28,7 @@ Stack too deep. Try removing local variables.
 
 **Final Solution:**
 
-I enabled the Intermediate Representation (IR) compiler backend and the optimizer in Remix:
+I [enabled](https://stackoverflow.com/questions/76470827/how-do-i-run-via-ir-in-remix) the Intermediate Representation (IR) compiler backend and the optimizer in [Remix](https://remix-ide.readthedocs.io/en/latest/compile.html#advanced-compiler-configurations):
 
 ```bash
 {
@@ -37,7 +37,7 @@ I enabled the Intermediate Representation (IR) compiler backend and the optimize
 }
 ```
 
-✅ This allowed the compiler to optimize stack usage and eliminate the error.
+This allowed the compiler to optimize stack usage and eliminate the error.
 
 *Additional Refactor (Optional but Useful)*:
 
@@ -72,7 +72,7 @@ _mint(to, liquidity);
 
 This preserved the desired burn logic without violating ERC20 rules.
 
-## Swap Revert: `InsufficientOutputAmount`
+## 3️⃣ Swap Revert: InsufficientOutputAmount
 
 **Description:**  
 
@@ -94,7 +94,7 @@ This error occurs when the output of a swap is less than the user-specified amou
 
 To bypass this during testing, I set amountOutMin = 1. This allowed the transaction to succeed as long as the actual output was greater than zero.
 
-**Production Suggestion:**
+**Production Suggestion(I think):**
 
 In a real deployment, amountOutMin should include a slippage buffer:
 
