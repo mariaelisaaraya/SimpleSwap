@@ -1,3 +1,9 @@
+![Course](https://img.shields.io/badge/Course-ETH_Kipu-blue)
+![Mode](https://img.shields.io/badge/Mode-Online-lightgrey)
+![Developer](https://img.shields.io/badge/Developer-3lisa-purple)
+![State](https://img.shields.io/badge/State-Active-brightgreen)
+
+
 # 📜 SimpleSwap - Uniswap-like DEX
 
 ---
@@ -10,7 +16,19 @@
 
 ---
 
-## Description
+## 📌 Essential Information
+
+**Network:** Sepolia  
+
+**Contract:**
+  - **TokenA** [`0xBBeE036d5180e859Cd9db575d4A7fedceafd958f`](https://sepolia.etherscan.io/address/0xbbee036d5180e859cd9db575d4a7fedceafd958f#code)
+  - **TokenB** [`0x640bff3107F2FD7711CBb4CCE5de02550f747CB3`](https://sepolia.etherscan.io/address/0x640bff3107f2fd7711cbb4cce5de02550f747cb3#code)
+  - **SimpleSwap** 
+**Owner:** `0x39581f1c36CfeBfB36934E583fb3e3CE92Ba6c58`  
+
+---
+
+## General Description
 
 **SimpleSwap** is a basic Decentralized Exchange (DEX) smart contract inspired by the core functionalities of Uniswap V2. It enables users to:
 
