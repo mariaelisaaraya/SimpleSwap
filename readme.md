@@ -56,23 +56,24 @@ This contract allows users to:
 
 2.3.  **Create Token Files:**
 
-    -  Create `MockTokenA.sol` 
-    -  Create `MockTokenB.sol`
+- Create `MockTokenA.sol` 
+- Create `MockTokenB.sol`
 
 2.4. **Deploy ERC-20 Tokens:**
 
-    -  Compile MockTokenA.sol.
-    -  In the Deploy & Run Transactions tab, select MockTokenA from the dropdown and click Deploy. Copy the deployed address (e.g., 0xc475...).
-    -  Repeat for MockTokenB.sol, copying its deployed address (e.g., 0x9dAf...).
+- Compile MockTokenA.sol.
+- In the Deploy & Run Transactions tab, select MockTokenA from the dropdown and click Deploy. Copy the deployed address (e.g., 0xc475...).
+- Repeat for MockTokenB.sol, copying its deployed address (e.g., 0x9dAf...).
 
 2.5. **Deploy `SimpleSwap`:**
 
-    -  Compile `SimpleSwap.sol`.
-    -  In the `Deploy & Run Transactions` tab, select `SimpleSwap` from the dropdown.
-    -  In the `Deploy` section, locate the constructor fields: `_tokenA` and `_tokenB`.
-    -  Paste the deployed address of your `MockTokenA` into `_tokenA`.
-    -  Paste the deployed address of your `MockTokenB` into `_tokenB`.
-    -  Click `Deploy`. Copy the deployed **SimpleSwap address** (e.g., 0xa42b...).
+- Compile `SimpleSwap.sol`.
+- In the `Deploy & Run Transactions` tab, select `SimpleSwap` from the dropdown.
+- In the `Deploy` section, locate the constructor fields: `_tokenA` and `_tokenB`.
+- Paste the deployed address of your `MockTokenA` into `_tokenA`.
+- Paste the deployed address of your `MockTokenB` into `_tokenB`.
+- Click `Deploy`. Copy the deployed **SimpleSwap address** (e.g., 0xa42b...).
+  
 ---
 
 ## 3. Step-by-Step Testing in Remix
