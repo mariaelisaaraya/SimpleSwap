@@ -50,22 +50,22 @@ This contract allows users to:
 
 ### 2. Deployment (Step-by-step in Remix)
 
-1.  **Open Remix IDE:** Go to [Remix IDE](https://remix.ethereum.org/).
+2.1.  **Open Remix IDE:** Go to [Remix IDE](https://remix.ethereum.org/).
 
-2.  **Select Environment:** In the Deploy & Run Transactions tab (the Ethereum logo icon), choose JavaScript VM for local testing. If using a public testnet like Sepolia, select Injected Provider - Metamask and connect your wallet.
+2.2.  **Select Environment:** In the Deploy & Run Transactions tab (the Ethereum logo icon), choose JavaScript VM for local testing. If using a public testnet like Sepolia, select Injected Provider - Metamask and connect your wallet.
 
-3.  **Create Token Files:**
+2.3.  **Create Token Files:**
 
     -  Create `MockTokenA.sol` 
     -  Create `MockTokenB.sol`
 
-4. **Deploy ERC-20 Tokens:**
+2.4. **Deploy ERC-20 Tokens:**
 
     -  Compile MockTokenA.sol.
     -  In the Deploy & Run Transactions tab, select MockTokenA from the dropdown and click Deploy. Copy the deployed address (e.g., 0xc475...).
     -  Repeat for MockTokenB.sol, copying its deployed address (e.g., 0x9dAf...).
 
-5. **Deploy `SimpleSwap`:**
+2.5. **Deploy `SimpleSwap`:**
 
     -  Compile `SimpleSwap.sol`.
     -  In the `Deploy & Run Transactions` tab, select `SimpleSwap` from the dropdown.
@@ -75,72 +75,98 @@ This contract allows users to:
     -  Click `Deploy`. Copy the deployed **SimpleSwap address** (e.g., 0xa42b...).
 ---
 
-## 📖 Key Functionalities -See!
+## 3. Step-by-Step Testing in Remix
 
-### Add Liquidity (`addLiquidity`)
+Use the deployed contract addresses from your Remix session:
 
-Allows users to contribute tokens to the liquidity pool, receiving LP (Liquidity Provider) tokens in return, representing their share of the pool.
+- **Token A:** 0x7c87b552996ebd58dc76f5809fb4476cf189ac00
+- **Token B:** 0x5544A7c23557Cc9fa410Ac1Aaa43713daA477D49
+- **SimpleSwap:** 0x216051a12dd8365dE1F4AdD61e952134562662d7
+- **Account:** 0x39581f1c36CfeBfB36934E583fb3e3CE92Ba6c58
 
-```solidity
-function addLiquidity(
-    address tokenA_,
-    address tokenB_,
-    uint256 amountADesired,
-    uint256 amountBDesired,
-    uint256 amountAMin,
-    uint256 amountBMin,
-    address to,
-    uint256 deadline
-) external returns (uint256 amountA, uint256 amountB, uint256 liquidity);
+### 3.1. Approve Tokens for SimpleSwap
+
+Before SimpleSwap can move your tokens, you need to grant it permission using the approve function on each token.
+
+- Select your `TokenA` contract in the `Deployed Contracts` section.
+- Expand the `approve` function.
+  - `Spender`:Enter `0x216051a12dd8365dE1F4AdD61e952134562662d7` (SimpleSwap address).
+  - `amount`: Enter `1000000000000000000000` (e.g., 1000 TKA).
+  - Click transact.
+- Repeat the process for your TokenB contract.
+
+### 3.2. Add Liquidity
+
+Now, let's add some liquidity to the SimpleSwap pool.
+
+- Select your SimpleSwap contract in the Deployed Contracts section.
+- Expand the addLiquidity function.
+  - _tokenA_param
+  - _tokenB_param: 
+  - amountADesired: 100000000000000000000 (100 TKA)
+  - amountBDesired: 200000000000000000000 (200 TKB)
+  - amountAMin: 90000000000000000000 (90 TKA)
+  - amountBMin: 180000000000000000000 (180 TKB)
+  - to: 0x39581f1c36CfeBfB36934E583fb3e3CE92Ba6c58 (account address)
+  - deadline: Math.floor(Date.now() / 1000) + 600 (in Consola)
+  - Click transact.
+- Expected Output:
+You should see a successful transaction and in the decoded output:
+
+```json
+{
+    "0": "uint256: amountA 100000000000000000000",   // 100 TKA
+    "1": "uint256: amountB 200000000000000000000",   // 200 TKB
+    "2": "uint256: liquidity 141421356237309503880"  // Approx. 141.42 LP tokens
+}
 ```
 
-- `tokenA_`, `tokenB_`: Addresses of the two ERC-20 tokens for the pair.
-- `amountADesired`, `amountBDesired`: The preferred amounts of Token A and Token B the user wishes to add.
-- `amountAMin`, `amountBMin`: Minimum acceptable amounts of Token A and Token B to prevent unfavorable price changes or slippage during liquidity provision.
-- `to`: The address where the minted LP tokens will be sent.
-- `deadline`: The Unix timestamp after which the transaction will revert if not processed.
-- Returns (`amountA`, `amountB`, `liquidity`): The actual amounts of Token A and Token B added, and the amount of LP tokens minted.
+### 3.3. Swap Exact Tokens For Tokens
 
-### Remove Liquidity (`removeLiquidity`) -
+Let's exchange some tokens. Ensure you have approved enough TokenA (or TokenB if swapping the other way) 
 
-Allows users to withdraw their proportional share of tokens from the liquidity pool by burning their LP tokens.
+- Select your SimpleSwap contract in the Deployed Contracts section.
+- Expand the swapExactTokensForTokens function.
+  - amountIn: 10000000000000000000 (10 TKA)
+  - amountOutMin: 18000000000000000000 (18 TKB - adjust this value if you get a "Slippage" or "InsufficientOutputAmount" error)
 
-```solidity
-function removeLiquidity(
-    address tokenA_,
-    address tokenB_,
-    uint256 liquidity,
-    uint256 amountAMin,
-    uint256 amountBMin,
-    address to,
-    uint256 deadline
-) external returns (uint256 amountA, uint256 amountB);
+path: Crucial for Remix and Sepolia! Enter this as a JSON array string:
+
+```
+["0x7c87b552996ebd58dc76f5809fb4476cf189ac00", "0x5544A7c23557Cc9fa410Ac1Aaa43713daA477D49"]
 ```
 
-- `tokenA_`, `tokenB_`: Addresses of the two ERC-20 tokens in the pair.
-- `liquidity`: The amount of LP tokens to burn.
-- `amountAMin`, `amountBMin`: Minimum acceptable amounts of Token A and Token B to receive, to prevent slippage.
-- `to`: The address where the withdrawn Token A and Token B will be sent.
-- `deadline`: The Unix timestamp after which the transaction will revert.
-- Returns (`amountA`, `amountB`): The amounts of Token A and Token B received after removing liquidity.
-
-### Swap Tokens (`swapExactTokensForTokens`)
-
-Executes a swap, allowing users to exchange a precise amount of one token for another.
-
-```solidity
-function swapExactTokensForTokens(
-    uint256 amountIn,
-    uint256 amountOutMin,
-    address[] calldata path,
-    address to,
-    uint256 deadline
-) external returns (uint256[] memory amounts);
+❗ Make sure to format the path correctly, or the function will fail.
+- Continue
+  - to: 0x39581f1c36CfeBfB36934E583fb3e3CE92Ba6c58 (or your account address)
+  - deadline: Math.floor(Date.now() / 1000) + 600 (in Consola)
+  - Click transact
+- Expected Output:
+If successful, you will see a Swap event and the decoded output will be an array like:
+```json
+[
+  "10000000000000000000", // amountIn (10 TKA)
+  "amountOut"                     // (The actual amount of TKB received)
+]
 ```
 
-- `amountIn`: The exact amount of the input token the user wants to swap.
-- `amountOutMin`: The minimum acceptable amount of the output token to receive, to prevent excessive slippage.
-- `path`: An array of token addresses defining the swap route. For SimpleSwap, this array must have a length of 2: [`InputTokenAddress`, `OutputTokenAddress`].
-- `to`: The address where the output tokens will be sent.
-- `deadline`: The Unix timestamp after which the transaction will revert.
-- Returns (`amounts`): A dynamic array containing two elements: [`amountIn`, `amountOut`].
+### 3.4. Remove Liquidity
+
+Finally, remove some of the liquidity you provided.
+
+- Select your SimpleSwap contract.
+- Expand the removeLiquidity function.
+  - _tokenA_param
+  - _tokenB_param: 
+  - liquidity: The amount of LP tokens you received in Step 2 (e.g., 141421356237309503880).
+  - amountAMin: 0 (or a small minimum)
+  - amountBMin: 0 (or a small minimum)
+  - to: 0x39581f1c36CfeBfB36934E583fb3e3CE92Ba6c58 (account address)
+  - deadline: Math.floor(Date.now() / 1000) + 600 (in Consola)
+  - Click transact.
+- Expected Output:
+You should see a Burn event and the decoded output will show the amounts of TokenA and TokenB returned to your address.
+
+## 🧠 Author
+
+Developed by [@3lisa](https://github.com/3lisa) as part of the ETH Kipu course.
