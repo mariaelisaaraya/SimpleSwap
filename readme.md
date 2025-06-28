@@ -13,9 +13,9 @@
 **Network:** Sepolia  
 
 **Contract:**
-  - **TokenA** [`0xBBeE036d5180e859Cd9db575d4A7fedceafd958f`](https://sepolia.etherscan.io/address/0xbbee036d5180e859cd9db575d4a7fedceafd958f#code)
-  - **TokenB** [`0x640bff3107F2FD7711CBb4CCE5de02550f747CB3`](https://sepolia.etherscan.io/address/0x640bff3107f2fd7711cbb4cce5de02550f747cb3#code)
-  - **SimpleSwap**
+  - **TokenA** [`0x7c87b552996ebd58dc76f5809fb4476cf189ac00`](https://sepolia.etherscan.io/address/0x7c87b552996ebd58dc76f5809fb4476cf189ac00#code)
+  - **TokenB** [`0x5544A7c23557Cc9fa410Ac1Aaa43713daA477D49`](https://sepolia.etherscan.io/address/0x5544a7c23557cc9fa410ac1aaa43713daa477d49#code)
+  - **SimpleSwap** [`0x216051a12dd8365dE1F4AdD61e952134562662d7`](https://sepolia.etherscan.io/address/0x216051a12dd8365de1f4add61e952134562662d7#code)
     
 **Owner:** `0x39581f1c36CfeBfB36934E583fb3e3CE92Ba6c58`  
 
