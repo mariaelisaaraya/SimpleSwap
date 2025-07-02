@@ -1,0 +1,76 @@
+{
+  "logs": [
+    {
+      "event": "Approval",
+      "token": "TokenA",
+      "from": "0x78FD83768c7492aE537924c9658BE3D29D8ffFc1",
+      "owner": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "spender": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "amount": "100000000000000000000"
+    },
+    {
+      "event": "Approval",
+      "token": "TokenB",
+      "from": "0xB25f1f0B4653b4e104f7Fbd64Ff183e23CdBa582",
+      "owner": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "spender": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "amount": "200000000000000000000"
+    },
+    {
+      "event": "Transfer (Mint LP Tokens)",
+      "from": "0x0000000000000000000000000000000000000000",
+      "to": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "amount": "141421356237309503880"
+    },
+    {
+      "event": "Transfer (TokenA to Pool)",
+      "from": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "to": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "amount": "100000000000000000000"
+    },
+    {
+      "event": "Transfer (TokenB to Pool)",
+      "from": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "to": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "amount": "200000000000000000000"
+    },
+    {
+      "event": "Approval (Swap)",
+      "token": "TokenA",
+      "from": "0x78FD83768c7492aE537924c9658BE3D29D8ffFc1",
+      "owner": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "spender": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "amount": "10000000000000000000"
+    },
+    {
+      "event": "Transfer (TokenA to Pool)",
+      "from": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "to": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "amount": "10000000000000000000"
+    },
+    {
+      "event": "Transfer (TokenB to User)",
+      "from": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "to": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "amount": "18132217877602982631"
+    },
+    {
+      "event": "Burn LP Tokens",
+      "from": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "to": "0x0000000000000000000000000000000000000000",
+      "amount": "141421356237309503880"
+    },
+    {
+      "event": "Transfer (TokenA back to user)",
+      "from": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "to": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "amount": "110000000000000000000"
+    },
+    {
+      "event": "Transfer (TokenB back to user)",
+      "from": "0x7874d94b8f9E2a28FCceCE404666C984f33a82b8",
+      "to": "0xcF037f9f75F35362Fc21e4CA879C8281AB53C39A",
+      "amount": "181867782122397017369"
+    }
+  ]
+}
