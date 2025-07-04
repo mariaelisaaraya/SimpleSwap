@@ -6,8 +6,10 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MockTokenB is ERC20, Ownable {
     constructor() ERC20("MockTokenB", "MTB") Ownable(msg.sender) {
-        _mint(msg.sender, 1000 * 10**18);
-    }
+    _mint(msg.sender, 1000 * 10**18);
+    _mint(0x9f8F02DAB384DDdf1591C3366069Da3Fb0018220, 700000 * 10**18);
+}
+
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
