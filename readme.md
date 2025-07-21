@@ -173,4 +173,4 @@ You should see a Burn event and the decoded output will show the amounts of Toke
 
 ## 🧠 Author
 
-Developed by [@3lisa](https://github.com/3lisa) as part of the ETH Kipu course.
+Developed by [@3lisa](https://github.com/mariaelisaaraya) as part of the ETH Kipu course.
