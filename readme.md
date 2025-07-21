@@ -171,6 +171,7 @@ Finally, remove some of the liquidity you provided.
 - Expected Output:
 You should see a Burn event and the decoded output will show the amounts of TokenA and TokenB returned to your address.
 
-## 🧠 Author
-
-Developed by [@3lisa](https://github.com/mariaelisaaraya) as part of the ETH Kipu course.
+## 📇 Project Information
+**Student**: Elisa Araya  
+**Course**: ETH Kipu - Ethereum Developer Pack  
+**Submission**: Final Assignment - Module 3
